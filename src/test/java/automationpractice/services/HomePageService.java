@@ -65,10 +65,10 @@ public class HomePageService {
         return discounts;
     }
 
-    public void addProductToCart() {
+    public void addProductToCart(String price) {
         homePage = new HomePage();
-        homePage.moveToPrice26();
-        homePage.clickOnAddToCartButton();
+        homePage.moveToPrice(price);
+        homePage.clickOnAddToCartButton(price);
     }
 
     public String getCartCountMessage() {

@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 import static automationpractice.constants.Constant.Messages.ONE_PRODUCT_ADDED_TO_CART;
+import static automationpractice.constants.Constant.PriceForTest.PRICE_OF_PRODUCT;
 
 public class TestCase extends BaseTest {
 
@@ -36,6 +37,7 @@ public class TestCase extends BaseTest {
                         .setFullPrice(listOfProperties[2])
                         .setDiscount(listOfProperties[3])
                         .build();
+                System.out.println(expectedProduct);
 
                 String actualName = homePageService.getNames().get(item - 1);
                 String actualActualPrice = homePageService.getActualPrice().get(item - 1);
@@ -47,6 +49,7 @@ public class TestCase extends BaseTest {
                         .setFullPrice(actualFullPrice)
                         .setDiscount(actualDiscount)
                         .build();
+                System.out.println(actualProduct);
 
                 Assert.assertTrue(actualProduct.equals(expectedProduct));
             }
@@ -58,7 +61,7 @@ public class TestCase extends BaseTest {
     @Test
     public void testCase2() {
         homePageService = new HomePageService();
-        homePageService.addProductToCart();
+        homePageService.addProductToCart(PRICE_OF_PRODUCT);
         Assert.assertEquals(homePageService.getCartCountMessage(), ONE_PRODUCT_ADDED_TO_CART);
     }
 }
