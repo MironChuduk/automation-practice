@@ -13,9 +13,9 @@ import static automationpractice.constants.Constant.PriceForTest.PRICE_OF_PRODUC
 public class HomePage extends BasePage {
 
     private final By productItem = By.xpath("//ul[@id='homefeatured']/li");
-    private final By addToCartButton = By.xpath(String.format("//ul[@id='homefeatured']" +
-            "//div[@class='right-block']//span[contains(text(),'%s')]" +
-            "/../following::div[1]/a[contains(@class, 'ajax_add_to_cart_button')]/span", PRICE_OF_PRODUCT));
+//    private final By addToCartButton = By.xpath(String.format("//ul[@id='homefeatured']" +
+//            "//div[@class='right-block']//span[contains(text(),'%s')]" +
+//            "/../following::div[1]/a[contains(@class, 'ajax_add_to_cart_button')]/span", PRICE_OF_PRODUCT));
     private final By countCartMessage = By.xpath("//span[@class='ajax_cart_product_txt ']");
 
     public HomePage() {
@@ -56,14 +56,6 @@ public class HomePage extends BasePage {
         }
     }
 
-//    public String getFullPrice(List<WebElement> parentElement) {
-//       if (parentElement.isEmpty()){
-//           return "";
-//       } else {
-//           return parentElement.get(0).getText();
-//       }
-//    }
-
     public void moveToPrice(String testedProductPrice) {
         WebElement price = driver.findElement(By.xpath(String.format("//ul[@id='homefeatured']" +
                 "//div[@class='right-block']//span[contains(text(),'%s')]", testedProductPrice)));
@@ -72,9 +64,8 @@ public class HomePage extends BasePage {
     }
 
     public void clickOnAddToCartButton(String testedProductPrice) {
-        driver.findElement(By.xpath(String.format("//ul[@id='homefeatured']//div[@class='right-block']" +
-                        "//span[contains(text(),'%s')]/../following::div[1]" +
-                        "/a[contains(@class, 'ajax_add_to_cart_button')]/span", testedProductPrice)))
+        driver.findElement(By.xpath(String.format("//span[contains(text(),'%s')]/.." +
+                        "/following::div[1]//span[contains(text(), 'Add to cart')]", testedProductPrice)))
                 .click();
     }
 

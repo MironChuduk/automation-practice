@@ -1,5 +1,7 @@
 package automationpractice.pages.homePage.classes;
 
+import automationpractice.utils.PropertiesParser;
+
 import java.util.Objects;
 
 public class Product {
@@ -62,5 +64,16 @@ public class Product {
         if (!Objects.equals(actualPrice, product.actualPrice)) return false;
         if (!Objects.equals(fullPrice, product.fullPrice)) return false;
         return Objects.equals(discount, product.discount);
+    }
+
+    public static Product getExpectedProduct(String key) {
+        PropertiesParser propertiesParser = new PropertiesParser();
+        String[] listOfProperties = propertiesParser.parsProperties(key);
+        return new Product.ProductBuilder()
+                .setProductTitle(listOfProperties[0])
+                .setActualPrice(listOfProperties[1])
+                .setFullPrice(listOfProperties[2])
+                .setDiscount(listOfProperties[3])
+                .build();
     }
 }

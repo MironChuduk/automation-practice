@@ -2,8 +2,6 @@ package automationpractice.tests;
 
 import automationpractice.pages.homePage.classes.Product;
 import automationpractice.services.HomePageService;
-import automationpractice.utils.ExpectedProduct;
-import automationpractice.utils.PropertiesParser;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -15,19 +13,28 @@ import static automationpractice.constants.Constant.PriceForTest.PRICE_OF_PRODUC
 public class TestCase extends BaseTest {
 
     private HomePageService homePageService;
-    private ExpectedProduct expectedProduct;
+    private Product expectedProduct;
 
     @Test
     public void testCase1() {
         homePageService = new HomePageService();
-        expectedProduct = new ExpectedProduct();
 
         List<Product> actualProductList = homePageService.getProductList();
 
-        for (int item = 1; item <= homePageService.countProducts(); item++) {
-            Product product = expectedProduct.getExpectedProduct(String.format("item%s", item));
-            Assert.assertTrue(actualProductList.get(item - 1).equals(product));
-        }
+        Product product = Product.getExpectedProduct("item1");
+        Assert.assertTrue(actualProductList.get(0).equals(product));
+        product = Product.getExpectedProduct("item2");
+        Assert.assertTrue(actualProductList.get(1).equals(product));
+        product = Product.getExpectedProduct("item3");
+        Assert.assertTrue(actualProductList.get(2).equals(product));
+        product = Product.getExpectedProduct("item4");
+        Assert.assertTrue(actualProductList.get(3).equals(product));
+        product = Product.getExpectedProduct("item5");
+        Assert.assertTrue(actualProductList.get(4).equals(product));
+        product = Product.getExpectedProduct("item6");
+        Assert.assertTrue(actualProductList.get(5).equals(product));
+        product = Product.getExpectedProduct("item7");
+        Assert.assertTrue(actualProductList.get(6).equals(product));
     }
 
     @Test
