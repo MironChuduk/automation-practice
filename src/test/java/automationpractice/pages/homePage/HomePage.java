@@ -26,6 +26,44 @@ public class HomePage extends BasePage {
         return driver.findElements(productItem);
     }
 
+    public String getTitle(WebElement parentElement) {
+        By title = By.xpath(".//a[@class='product-name']");
+        return parentElement.findElement(title).getText();
+    }
+
+    public String getActualPrice(WebElement parentElement) {
+        By actualPrice = By.xpath(".//div[@class='right-block']//span[@itemprop='price']");
+        return parentElement.findElement(actualPrice).getText();
+    }
+
+    public String getFullPrice(WebElement parentElement) {
+        By fullPrice = By.xpath(".//div[@class='right-block']//span[@class='old-price product-price']");
+        List<WebElement> fullPriceList = parentElement.findElements(fullPrice);
+        if (fullPriceList.isEmpty()) {
+            return "";
+        } else {
+            return fullPriceList.get(0).getText();
+        }
+    }
+
+    public String getDiscount(WebElement parentElement) {
+        By discount = By.xpath(".//div[@class='right-block']//span[@class='price-percent-reduction']");
+        List<WebElement> discountList = parentElement.findElements(discount);
+        if (discountList.isEmpty()) {
+            return "";
+        } else {
+            return discountList.get(0).getText();
+        }
+    }
+
+//    public String getFullPrice(List<WebElement> parentElement) {
+//       if (parentElement.isEmpty()){
+//           return "";
+//       } else {
+//           return parentElement.get(0).getText();
+//       }
+//    }
+
     public void moveToPrice(String testedProductPrice) {
         WebElement price = driver.findElement(By.xpath(String.format("//ul[@id='homefeatured']" +
                 "//div[@class='right-block']//span[contains(text(),'%s')]", testedProductPrice)));
