@@ -2,7 +2,10 @@ package automationpractice.pages.homePage.classes;
 
 import automationpractice.utils.PropertiesParser;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Product {
     private final String productTitle;
@@ -66,14 +69,19 @@ public class Product {
         return Objects.equals(discount, product.discount);
     }
 
-    public static Product getExpectedProduct(String key) {
+    public static List<Product> getExpectedProduct(List<String> keys) {
         PropertiesParser propertiesParser = new PropertiesParser();
-        String[] listOfProperties = propertiesParser.parsProperties(key);
-        return new Product.ProductBuilder()
-                .setProductTitle(listOfProperties[0])
-                .setActualPrice(listOfProperties[1])
-                .setFullPrice(listOfProperties[2])
-                .setDiscount(listOfProperties[3])
-                .build();
+        List<Product> expectedProductList = new ArrayList<>();
+        for (String key : keys) {
+            String[] listOfProperties = propertiesParser.parsProperties(key);
+            Product product = new Product.ProductBuilder()
+                    .setProductTitle(listOfProperties[0])
+                    .setActualPrice(listOfProperties[1])
+                    .setFullPrice(listOfProperties[2])
+                    .setDiscount(listOfProperties[3])
+                    .build();
+            expectedProductList.add(product);
+        }
+        return expectedProductList;
     }
 }

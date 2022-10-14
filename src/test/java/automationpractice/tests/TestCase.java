@@ -5,6 +5,7 @@ import automationpractice.services.HomePageService;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static automationpractice.constants.Constant.Messages.ONE_PRODUCT_ADDED_TO_CART;
@@ -21,20 +22,9 @@ public class TestCase extends BaseTest {
 
         List<Product> actualProductList = homePageService.getProductList();
 
-        Product product = Product.getExpectedProduct("item1");
-        Assert.assertTrue(actualProductList.get(0).equals(product));
-        product = Product.getExpectedProduct("item2");
-        Assert.assertTrue(actualProductList.get(1).equals(product));
-        product = Product.getExpectedProduct("item3");
-        Assert.assertTrue(actualProductList.get(2).equals(product));
-        product = Product.getExpectedProduct("item4");
-        Assert.assertTrue(actualProductList.get(3).equals(product));
-        product = Product.getExpectedProduct("item5");
-        Assert.assertTrue(actualProductList.get(4).equals(product));
-        product = Product.getExpectedProduct("item6");
-        Assert.assertTrue(actualProductList.get(5).equals(product));
-        product = Product.getExpectedProduct("item7");
-        Assert.assertTrue(actualProductList.get(6).equals(product));
+        List<String> keys = Arrays.asList("item1", "item2", "item3", "item4", "item5", "item6", "item7");
+        List<Product> expectedProductList = Product.getExpectedProduct(keys);
+        Assert.assertEquals(expectedProductList, actualProductList);
     }
 
     @Test

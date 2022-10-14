@@ -13,9 +13,9 @@ public class HomePageService {
 
     private HomePage homePage;
 
-    public byte countProducts() {
+    public int countProducts() {
         homePage = new HomePage();
-        return (byte) homePage.getListOfProduct().size();
+        return homePage.getListOfProduct().size();
     }
 
     public Product getProduct(WebElement parentElement) {

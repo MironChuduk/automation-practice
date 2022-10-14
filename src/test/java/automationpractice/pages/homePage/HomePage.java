@@ -8,14 +8,9 @@ import org.openqa.selenium.interactions.Actions;
 
 import java.util.List;
 
-import static automationpractice.constants.Constant.PriceForTest.PRICE_OF_PRODUCT;
-
 public class HomePage extends BasePage {
 
     private final By productItem = By.xpath("//ul[@id='homefeatured']/li");
-//    private final By addToCartButton = By.xpath(String.format("//ul[@id='homefeatured']" +
-//            "//div[@class='right-block']//span[contains(text(),'%s')]" +
-//            "/../following::div[1]/a[contains(@class, 'ajax_add_to_cart_button')]/span", PRICE_OF_PRODUCT));
     private final By countCartMessage = By.xpath("//span[@class='ajax_cart_product_txt ']");
 
     public HomePage() {
